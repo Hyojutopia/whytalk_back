@@ -1,10 +1,10 @@
-package kr.kro.whytalk;
+package kr.kro.whytalk.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WhytalkApplicationTests {
+class WhytalkBackendApplicationTests {
 
     @Test
     void contextLoads() {
