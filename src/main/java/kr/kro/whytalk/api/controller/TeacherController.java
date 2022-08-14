@@ -1,34 +1,23 @@
 package kr.kro.whytalk.api.controller;
 
+import kr.kro.whytalk.api.domain.Response;
+import kr.kro.whytalk.api.domain.Teacher;
+import kr.kro.whytalk.api.service.TeacherService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TeacherController {
+    private final TeacherService teacherService;
+
+    public TeacherController(TeacherService teacherService) {
+        this.teacherService = teacherService;
+    }
+
     @PostMapping("/teacher")
-    public TempResponse postTeacher(@RequestBody TempRequset request) {
-        return new TempResponse("Success");
+    public Response postTeacher(@RequestBody Teacher teacher) {
+        this.teacherService.signUp(teacher);
+        return new Response("Success!!");
     }
-}
-
-
-// TODO: 임시 객체, 이후 구현시 삭제할것
-class TempResponse {
-    private final String message;
-
-    public TempResponse(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-}
-
-
-// TODO: 임시 객체, 이후 구현시 삭제할것
-class TempRequset {
-    public String username;
-    public String password;
 }
