@@ -17,7 +17,12 @@ public class TeacherController {
 
     @PostMapping("/teacher")
     public Response postTeacher(@RequestBody Teacher teacher) {
-        this.teacherService.signUp(teacher);
-        return new Response("Success!!");
+        Teacher result = teacherService.signUpOrNull(teacher);
+
+        if (result == null) {
+            return new Response("Failed!!");
+        } else {
+            return new Response("Success!!");
+        }
     }
 }
