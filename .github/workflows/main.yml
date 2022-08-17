@@ -1,4 +1,4 @@
-name: whyTalk chatRoom server CI/CD
+name:  chatRoom server CI/CD
 
 on:
   push:
