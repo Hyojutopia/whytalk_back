@@ -1,6 +1,7 @@
 package kr.kro.whytalk.api.service;
 
 import kr.kro.whytalk.api.domain.Teacher;
+import kr.kro.whytalk.api.dto.TeacherDto;
 import kr.kro.whytalk.api.repository.TeacherMemoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,10 +15,11 @@ public class TeacherService {
         this.teacherMemoryRepository = teacherMemoryRepository;
     }
 
-    public Teacher signUpOrNull(Teacher teacher) {
-        if (isAlreadyUsedEmail(teacher.getEmail())) {
-            return null;
-        }
+    public Teacher signUp(TeacherDto dto) {
+        Teacher teacher = new Teacher();
+        teacher.setEmail(dto.getEmail());
+        teacher.setPassword(dto.getPassword());
+        teacher.setName(dto.getName());
 
         return teacherMemoryRepository.save(teacher);
     }

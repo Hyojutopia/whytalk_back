@@ -1,5 +1,7 @@
 package kr.kro.whytalk.api.domain;
 
+import java.time.OffsetDateTime;
+
 public class Teacher {
     /**
      * 모든 id는 고유해아 함
@@ -15,11 +17,7 @@ public class Teacher {
 
     private String name;
 
-    public Teacher(String email, String password, String name) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-    }
+    private OffsetDateTime createdDateTime;
 
     public long getId() {
         return id;
