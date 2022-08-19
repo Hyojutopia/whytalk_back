@@ -11,7 +11,7 @@ public class TeacherMemoryRepository {
     private static final List<Teacher> teachers = new ArrayList<>();
     private static long nextId = 0;
 
-    public Teacher findByIdOrNull(Long id) {
+    public Teacher findByIdOrNull(long id) {
         for (Teacher teacher : teachers) {
             if (teacher.getId() == id) {
                 return teacher;
@@ -25,6 +25,16 @@ public class TeacherMemoryRepository {
         for (Teacher teacher : teachers) {
             if (teacher.getEmail().equals(email)) {
                 return teacher;
+            }
+        }
+
+        return null;
+    }
+
+    public Long getIdOrNull(String email, String password) {
+        for (Teacher teacher : teachers) {
+            if (teacher.getEmail().equals(email) && teacher.getPassword().equals(password)) {
+                return teacher.getId();
             }
         }
 

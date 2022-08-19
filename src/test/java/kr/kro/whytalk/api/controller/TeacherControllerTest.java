@@ -2,24 +2,21 @@ package kr.kro.whytalk.api.controller;
 
 import kr.kro.whytalk.api.dto.TeacherDto;
 import kr.kro.whytalk.api.repository.TeacherMemoryRepository;
-import kr.kro.whytalk.api.service.TeacherService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TeacherControllerTest {
     private TeacherMemoryRepository teacherMemoryRepository;
-    private TeacherService teacherService;
     private TeacherController teacherController;
 
     @BeforeEach
     void beforeEach() {
         teacherMemoryRepository = new TeacherMemoryRepository();
-        teacherService = new TeacherService(teacherMemoryRepository);
-        teacherController = new TeacherController(teacherService);
+        teacherController = new TeacherController(teacherMemoryRepository);
     }
 
     @Test
@@ -34,7 +31,7 @@ class TeacherControllerTest {
         ResponseEntity<String> secondResponse = teacherController.postTeacher(second);
 
         // then
-        assertThat(firstResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(secondResponse.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        assertEquals(firstResponse.getStatusCode(), HttpStatus.OK);
+        assertEquals(secondResponse.getStatusCode(), HttpStatus.BAD_REQUEST);
     }
 }

@@ -4,30 +4,35 @@ import kr.kro.whytalk.api.domain.Teacher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class TeacherMemoryRepositoryTest {
-    TeacherMemoryRepository teacherMemoryRepository = new TeacherMemoryRepository();
+    private final TeacherMemoryRepository teacherMemoryRepository = new TeacherMemoryRepository();
 
     @Test
-    void findByIdOrNull() {
+    void findByIdOrNull_sameId_returnsSameEntity() {
+        // given
+        Teacher saved = teacherMemoryRepository.save(new Teacher());
+        long id = saved.getId();
 
-        Teacher teacher = new Teacher();
-        teacher.setEmail("what@test.com");
-        teacher.setName("foo");
-        teacher.setPassword("bar");
+        // when
+        Teacher found = teacherMemoryRepository.findByIdOrNull(id);
 
-        Teacher result = teacherMemoryRepository.save(teacher);
-
-        Teacher found = teacherMemoryRepository.findByIdOrNull(result.getId());
-        assertSame(result, found);
+        // then
+        assertEquals(saved, found);
     }
 
     @Test
-    void findByEmailOrNull() {
-    }
+    void findByIdOrNull_wrongId_returnsNull() {
+        // given
+        Teacher saved = teacherMemoryRepository.save(new Teacher());
+        long id = saved.getId();
 
-    @Test
-    void save() {
+        // when
+        Teacher found = teacherMemoryRepository.findByIdOrNull(id + 1);
+
+        // then
+        assertNull(found);
     }
 }

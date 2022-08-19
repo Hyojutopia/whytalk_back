@@ -3,20 +3,16 @@ package kr.kro.whytalk.api.dto;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-public class TeacherDto {
+public class TeacherLoginDto {
     @Email
-    private String email;
+    private final String email;
 
     @NotBlank
-    private String password;
+    private final String password;
 
-    @NotBlank
-    private String name;
-
-    public TeacherDto(String email, String password, String name) {
+    public TeacherLoginDto(String email, String password) {
         this.email = email;
         this.password = password;
-        this.name = name;
     }
 
     public String getEmail() {
@@ -27,16 +23,11 @@ public class TeacherDto {
         return password;
     }
 
-    public String getName() {
-        return name;
-    }
-
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("TeacherDto{");
+        final StringBuilder sb = new StringBuilder("TeacherLoginDto{");
         sb.append("email='").append(email).append('\'');
         sb.append(", password='").append(password).append('\'');
-        sb.append(", name='").append(name).append('\'');
         sb.append('}');
         return sb.toString();
     }
